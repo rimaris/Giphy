@@ -25,7 +25,6 @@ final class GiphyViewController: UIViewController {
 
     @IBAction func onNoButtonTapped() {
         highlightImageBorder(false)
-        giphyImageView.layer.borderColor = UIColor.ypRed.cgColor
         anyButtonTapped()
     }
 
