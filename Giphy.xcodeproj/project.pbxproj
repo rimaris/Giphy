@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F2CF19E296E989B002D0A76 /* UIColors + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2CF19D296E989B002D0A76 /* UIColors + Extensions.swift */; };
 		6FCBEAD72967DC78002E709D /* YS Display-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6FCBEAD62967DC78002E709D /* YS Display-Medium.ttf */; };
 		B86EC750294E75280050617B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EC74F294E75280050617B /* AppDelegate.swift */; };
 		B86EC752294E75280050617B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86EC751294E75280050617B /* SceneDelegate.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F2CF19D296E989B002D0A76 /* UIColors + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColors + Extensions.swift"; sourceTree = "<group>"; };
 		6FCBEAD52967DC68002E709D /* YS Display-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Bold.ttf"; sourceTree = "<group>"; };
 		6FCBEAD62967DC78002E709D /* YS Display-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Medium.ttf"; sourceTree = "<group>"; };
 		B86EC74C294E75280050617B /* Giphy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Giphy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				B8FC1976294E794500DF78F1 /* Data+Gif.swift */,
+				6F2CF19D296E989B002D0A76 /* UIColors + Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				B8FC197F294E794500DF78F1 /* GiphyFactory.swift in Sources */,
 				B8FC197E294E794500DF78F1 /* GiphyFactoryDelegate.swift in Sources */,
 				B86EC750294E75280050617B /* AppDelegate.swift in Sources */,
+				6F2CF19E296E989B002D0A76 /* UIColors + Extensions.swift in Sources */,
 				B8FC197B294E794500DF78F1 /* GiphyPresenterProtocol.swift in Sources */,
 				B8FC197D294E794500DF78F1 /* GiphyPresenter.swift in Sources */,
 				B8FC1979294E794500DF78F1 /* GiphyAPIModel.swift in Sources */,

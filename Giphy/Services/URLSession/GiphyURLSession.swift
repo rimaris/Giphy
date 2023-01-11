@@ -17,7 +17,7 @@ final class GiphyURLSession: GiphyURLSessionProtocol {
         urlComponents.host = "api.giphy.com"
         urlComponents.path = "/v1/gifs/random"
         urlComponents.queryItems = [
-            .init(name: "api_key", value: "3kc6OFgsZGKURypdRNAiXhK2r5gnQaVs"),
+            .init(name: "api_key", value: "sDNqqL4rEhKHaD4BOXDOAYwPMTxuXTYZ"),
             .init(name: "tag", value: ""),
             .init(name: "rating", value: "g")
         ]

@@ -25,7 +25,6 @@ final class GiphyFactory: GiphyFactoryProtocol {
         urlSession.fetchGiphy { [weak self] result in
             // результат загрузки гифки
             switch result {
-
                 // Успех
             case .success(let apiModel):
                 if let model = self?.mapper.map(model: apiModel) {

@@ -4,7 +4,6 @@ import Foundation
 struct GiphyModel {
     // Уникальный идентификатор гифки
     let id: String
-
     // Ссылку на гифку
     let url: URL
 }
