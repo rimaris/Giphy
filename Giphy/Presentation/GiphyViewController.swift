@@ -4,16 +4,20 @@ final class GiphyViewController: UIViewController {
     
     @IBOutlet var thumbsDown: UIButton!
     @IBOutlet var thumbsUp: UIButton!
+    @IBOutlet weak var counterLabel: UILabel!
+    @IBOutlet weak var giphyImageView: UIImageView!
+    @IBOutlet weak var giphyActivityIndicatorView: UIActivityIndicatorView!
     
     private var gifCounter: Int = 0
-
     private var likedGifCounter: Int = 0
+    private lazy var presenter: GiphyPresenterProtocol = {
+        let presenter = GiphyPresenter()
+        presenter.viewController = self
+        return presenter
+    }()
 
-    @IBOutlet weak var counterLabel: UILabel!
 
-    @IBOutlet weak var giphyImageView: UIImageView!
-
-    @IBOutlet weak var giphyActivityIndicatorView: UIActivityIndicatorView!
+    // MARK: - Actions
 
     @IBAction func onYesButtonTapped() {
         presenter.saveGif(giphyImageView.image)
@@ -24,12 +28,6 @@ final class GiphyViewController: UIViewController {
     @IBAction func onNoButtonTapped() {
         anyButtonTapped(isYes: false)
     }
-    
-    private lazy var presenter: GiphyPresenterProtocol = {
-        let presenter = GiphyPresenter()
-        presenter.viewController = self
-        return presenter
-    }()
 
     // MARK: - Жизенный цикл экрана
 
@@ -37,6 +35,7 @@ final class GiphyViewController: UIViewController {
         super.viewDidLoad()
         makeButtonRounded(button: thumbsUp)
         makeButtonRounded(button: thumbsDown)
+        disableButtons()
         restart()
     }
     
