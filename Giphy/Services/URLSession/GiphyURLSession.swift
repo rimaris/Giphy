@@ -1,7 +1,5 @@
 import Foundation
 
-// Сетевой слой, необходим для загрузки гифок из сети
-// Возвращает сетевую модель GiphyAPIModel
 final class GiphyURLSession: GiphyURLSessionProtocol {
     private let urlSession: URLSession
 

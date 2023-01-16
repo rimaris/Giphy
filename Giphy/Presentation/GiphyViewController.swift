@@ -1,6 +1,5 @@
 import UIKit
 
-// Экран на котором показываются гифки
 final class GiphyViewController: UIViewController {
     
     @IBOutlet var thumbsDown: UIButton!
@@ -17,18 +16,15 @@ final class GiphyViewController: UIViewController {
     @IBOutlet weak var giphyActivityIndicatorView: UIActivityIndicatorView!
 
     @IBAction func onYesButtonTapped() {
-        highlightImageBorder(true)
         presenter.saveGif(giphyImageView.image)
         likedGifCounter += 1
-        anyButtonTapped()
+        anyButtonTapped(isYes: true)
     }
 
     @IBAction func onNoButtonTapped() {
-        highlightImageBorder(false)
-        anyButtonTapped()
+        anyButtonTapped(isYes: false)
     }
-
-    // Слой Presenter - бизнес логика приложения, к которым должен общаться UIViewController
+    
     private lazy var presenter: GiphyPresenterProtocol = {
         let presenter = GiphyPresenter()
         presenter.viewController = self
@@ -49,14 +45,21 @@ final class GiphyViewController: UIViewController {
         button.layer.borderWidth = 1
     }
     
-    
-    private func anyButtonTapped() {
-        updateCounterLabel()
-        if gifCounter >= 10 {
-            showEndOfGiphy()
-            return
+    private func anyButtonTapped(isYes: Bool) {
+        disableButtons()
+        highlightImageBorder(isYes: isYes)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            guard let self = self else { return }
+            self.disableImageBorder()
+            
+            self.updateCounterLabel()
+            if self.gifCounter >= 10 {
+                self.showEndOfGiphy()
+                return
+            }
+            self.presenter.fetchNextGiphy()
         }
-        presenter.fetchNextGiphy()
     }
 }
 
@@ -102,8 +105,8 @@ extension GiphyViewController: GiphyViewControllerProtocol {
     }
 
     func showGiphy(_ image: UIImage?) {
-        disableImageBorder()
         giphyImageView.image = image
+        enableButtons()
     }
     
     func showLoader() {
@@ -117,20 +120,24 @@ extension GiphyViewController: GiphyViewControllerProtocol {
         giphyActivityIndicatorView.isHidden = true
     }
     
-    func highlightImageBorder(_ isGreen: Bool) {
+    private func highlightImageBorder(isYes: Bool) {
         giphyImageView.layer.masksToBounds = true
         giphyImageView.layer.borderWidth = 8
-        if isGreen {
-            giphyImageView.layer.borderColor = UIColor.ypGreen.cgColor
-        } else {
-            giphyImageView.layer.borderColor = UIColor.ypRed.cgColor
-        }
-
+        giphyImageView.layer.borderColor = isYes ? UIColor.ypGreen.cgColor : UIColor.ypRed.cgColor
     }
     
-    func disableImageBorder() {
+    private func disableImageBorder() {
         giphyImageView.layer.borderWidth = 0
     }
+    
+    private func disableButtons() {
+        thumbsUp.isEnabled = false
+        thumbsDown.isEnabled = false
+    }
+    
+    private func enableButtons() {
+        thumbsUp.isEnabled = true
+        thumbsDown.isEnabled = true
+    }
+
 }
-
-

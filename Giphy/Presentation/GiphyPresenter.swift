@@ -2,11 +2,9 @@ import Foundation
 import UIKit
 import Photos
 
-// Presetner (бизнес слой для получения слудеющей гифки)
 final class GiphyPresenter: GiphyPresenterProtocol {
     private var giphyFactory: GiphyFactoryProtocol
 
-    // Слой View для общения и отображения случайной гифки
     weak var viewController: GiphyViewControllerProtocol?
 
     // MARK: - GiphyPresenterProtocol
@@ -16,7 +14,6 @@ final class GiphyPresenter: GiphyPresenterProtocol {
         self.giphyFactory.delegate = self
     }
 
-    // Загрузка следующей гифки
     func fetchNextGiphy() {
         viewController?.showLoader()
         
@@ -38,9 +35,9 @@ final class GiphyPresenter: GiphyPresenterProtocol {
 // MARK: - GiphyFactoryDelegate
 
 extension GiphyPresenter: GiphyFactoryDelegate {
-    // Успешная загрузка гифки
+    
     func didRecieveNextGiphy(_ giphy: GiphyModel) {
-        // Преобразуем набор картинок в гифку
+        
         let image = UIImage.gif(url: giphy.url)
 
         DispatchQueue.main.async { [weak self] in
@@ -49,7 +46,6 @@ extension GiphyPresenter: GiphyFactoryDelegate {
         }
     }
 
-    // При загрузке гифки произошла ошибка
     func didReciveError(_ error: GiphyError) {
         DispatchQueue.main.async { [weak self] in
             self?.viewController?.hideHoaler()

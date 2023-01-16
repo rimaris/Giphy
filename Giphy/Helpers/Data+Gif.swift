@@ -1,7 +1,5 @@
 import UIKit
 
-// Расширение, что бы создать гифку
-// Он заточен под Giphy и преобразует набор картинок в гифку
 extension UIImage {
     class func gif(data: Data) -> UIImage? {
         guard let source = CGImageSourceCreateWithData(data as CFData, nil) else {
