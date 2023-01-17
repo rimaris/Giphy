@@ -17,6 +17,8 @@ final class GiphyViewController: UIViewController {
         return presenter
     }()
     
+    private let maxGifCount = 10
+    
     
     // MARK: - Actions
     
@@ -54,7 +56,7 @@ final class GiphyViewController: UIViewController {
             self.disableImageBorder()
             
             self.updateCounterLabel()
-            if self.gifCounter >= 10 {
+            if self.gifCounter >= self.maxGifCount {
                 self.showEndOfGiphy()
                 return
             }
@@ -68,8 +70,8 @@ final class GiphyViewController: UIViewController {
 private extension GiphyViewController {
     func updateCounterLabel() {
         gifCounter += 1
-        if gifCounter < 10 {
-            counterLabel.text = "\(gifCounter + 1)/10"
+        if gifCounter < maxGifCount {
+            counterLabel.text = "\(gifCounter + 1)/\(maxGifCount)"
         }
     }
     
@@ -95,7 +97,7 @@ extension GiphyViewController: GiphyViewControllerProtocol {
     }
     
     func showEndOfGiphy() {
-        let alert = UIAlertController(title: "Мемы закончились!", message: "Вам понравилось: \(likedGifCounter)/10", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Мемы закончились!", message: "Вам понравилось: \(likedGifCounter)/\(maxGifCount)", preferredStyle: .alert)
         let action = UIAlertAction(title: "Хочу посмотреть еще гифок", style: .default) { [weak self] _ in
             self?.restart()
         }
