@@ -10,27 +10,30 @@ final class GiphyViewController: UIViewController {
     
     private var gifCounter: Int = 0
     private var likedGifCounter: Int = 0
+    
     private lazy var presenter: GiphyPresenterProtocol = {
         let presenter = GiphyPresenter()
         presenter.viewController = self
         return presenter
     }()
-
-
+    
+    private let maxGifCount = 10
+    
+    
     // MARK: - Actions
-
+    
     @IBAction func onYesButtonTapped() {
         presenter.saveGif(giphyImageView.image)
         likedGifCounter += 1
         anyButtonTapped(isYes: true)
     }
-
+    
     @IBAction func onNoButtonTapped() {
         anyButtonTapped(isYes: false)
     }
-
+    
     // MARK: - Жизенный цикл экрана
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         makeButtonRounded(button: thumbsUp)
@@ -53,7 +56,7 @@ final class GiphyViewController: UIViewController {
             self.disableImageBorder()
             
             self.updateCounterLabel()
-            if self.gifCounter >= 10 {
+            if self.gifCounter >= self.maxGifCount {
                 self.showEndOfGiphy()
                 return
             }
@@ -67,11 +70,11 @@ final class GiphyViewController: UIViewController {
 private extension GiphyViewController {
     func updateCounterLabel() {
         gifCounter += 1
-        if gifCounter < 10 {
-            counterLabel.text = "\(gifCounter + 1)/10"
+        if gifCounter < maxGifCount {
+            counterLabel.text = "\(gifCounter + 1)/\(maxGifCount)"
         }
     }
-
+    
     func restart() {
         likedGifCounter = 0
         gifCounter = 0
@@ -92,17 +95,16 @@ extension GiphyViewController: GiphyViewControllerProtocol {
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
     }
-
+    
     func showEndOfGiphy() {
-        let alert = UIAlertController(title: "Мемы закончились!", message: "Вам понравилось: \(likedGifCounter)/10", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Мемы закончились!", message: "Вам понравилось: \(likedGifCounter)/\(maxGifCount)", preferredStyle: .alert)
         let action = UIAlertAction(title: "Хочу посмотреть еще гифок", style: .default) { [weak self] _ in
             self?.restart()
         }
-        
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
     }
-
+    
     func showGiphy(_ image: UIImage?) {
         giphyImageView.image = image
         enableButtons()
@@ -113,7 +115,7 @@ extension GiphyViewController: GiphyViewControllerProtocol {
         giphyImageView.image = nil
         giphyActivityIndicatorView.startAnimating()
     }
-
+    
     func hideHoaler() {
         giphyActivityIndicatorView.stopAnimating()
         giphyActivityIndicatorView.isHidden = true
@@ -138,5 +140,4 @@ extension GiphyViewController: GiphyViewControllerProtocol {
         thumbsUp.isEnabled = true
         thumbsDown.isEnabled = true
     }
-
 }
