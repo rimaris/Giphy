@@ -10,27 +10,28 @@ final class GiphyViewController: UIViewController {
     
     private var gifCounter: Int = 0
     private var likedGifCounter: Int = 0
+    
     private lazy var presenter: GiphyPresenterProtocol = {
         let presenter = GiphyPresenter()
         presenter.viewController = self
         return presenter
     }()
-
-
+    
+    
     // MARK: - Actions
-
+    
     @IBAction func onYesButtonTapped() {
         presenter.saveGif(giphyImageView.image)
         likedGifCounter += 1
         anyButtonTapped(isYes: true)
     }
-
+    
     @IBAction func onNoButtonTapped() {
         anyButtonTapped(isYes: false)
     }
-
+    
     // MARK: - Жизенный цикл экрана
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         makeButtonRounded(button: thumbsUp)
@@ -71,7 +72,7 @@ private extension GiphyViewController {
             counterLabel.text = "\(gifCounter + 1)/10"
         }
     }
-
+    
     func restart() {
         likedGifCounter = 0
         gifCounter = 0
@@ -92,17 +93,16 @@ extension GiphyViewController: GiphyViewControllerProtocol {
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
     }
-
+    
     func showEndOfGiphy() {
         let alert = UIAlertController(title: "Мемы закончились!", message: "Вам понравилось: \(likedGifCounter)/10", preferredStyle: .alert)
         let action = UIAlertAction(title: "Хочу посмотреть еще гифок", style: .default) { [weak self] _ in
             self?.restart()
         }
-        
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
     }
-
+    
     func showGiphy(_ image: UIImage?) {
         giphyImageView.image = image
         enableButtons()
@@ -113,7 +113,7 @@ extension GiphyViewController: GiphyViewControllerProtocol {
         giphyImageView.image = nil
         giphyActivityIndicatorView.startAnimating()
     }
-
+    
     func hideHoaler() {
         giphyActivityIndicatorView.stopAnimating()
         giphyActivityIndicatorView.isHidden = true
@@ -138,5 +138,4 @@ extension GiphyViewController: GiphyViewControllerProtocol {
         thumbsUp.isEnabled = true
         thumbsDown.isEnabled = true
     }
-
 }
