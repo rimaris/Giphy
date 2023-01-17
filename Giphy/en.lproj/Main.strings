@@ -1,0 +1,18 @@
+
+/* Class = "UIButton"; configuration.title = "👎"; ObjectID = "dSQ-XY-gNl"; */
+"dSQ-XY-gNl.configuration.title" = "👎";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "dSQ-XY-gNl"; */
+"dSQ-XY-gNl.normalTitle" = "👎";
+
+/* Class = "UILabel"; text = "Giphy:"; ObjectID = "s2d-zm-LxP"; */
+"s2d-zm-LxP.text" = "Giphy:";
+
+/* Class = "UIButton"; configuration.title = "👍"; ObjectID = "uVG-ie-Uaw"; */
+"uVG-ie-Uaw.configuration.title" = "👍";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "uVG-ie-Uaw"; */
+"uVG-ie-Uaw.normalTitle" = "👍";
+
+/* Class = "UILabel"; text = "1/10"; ObjectID = "w0K-kb-sSM"; */
+"w0K-kb-sSM.text" = "1/10";

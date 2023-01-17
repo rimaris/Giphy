@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  Giphy
+
+  Created by Мария Солодова on 17.01.2023.
+  
+*/
+"Something went wrong(" = "Что-то пошло не так(";
+"Unable to load data" = "Невозможно загрузить данные";
+"Try again" = "Попробовать еще раз";
+"Memes are over!" = "Мемы закончились!";
+"You liked: %d/%d" = "Вам понравилось: %d/%d";
+"I want to see more gifs" = "Хочу посмотреть еще гифок";
