@@ -19,7 +19,6 @@ final class GiphyViewController: UIViewController {
     
     private let maxGifCount = 10
     
-    
     // MARK: - Actions
     
     @IBAction func onYesButtonTapped() {
@@ -78,7 +77,7 @@ private extension GiphyViewController {
     func restart() {
         likedGifCounter = 0
         gifCounter = 0
-        counterLabel.text = "1/10"
+        counterLabel.text = "1/\(maxGifCount)"
         presenter.fetchNextGiphy()
     }
 }

@@ -1,5 +1,3 @@
-import Foundation
-
 enum GiphyError: Error {
     case wrongRequestURL
     case wrongDecoding
